@@ -35,7 +35,7 @@
 Clone the project
 
 ```bash
-  git clone https://github.com/patrykkawiak/Portfolio.git
+  git clone https://github.com/patrykkawiak/Recruitment-SNARTO.git
 ```
 
 Go to the project directory
