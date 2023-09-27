@@ -13,8 +13,10 @@
 	cursor: pointer;
 }
 
-.plain:hover,
-.plain:active,
-.plain:focus {
+.plain:disabled {
+	color: rgba(255, 255, 255, 0.27);
+}
+
+.plain:hover {
 	border: 2px solid rgba(255, 255, 255, 0.44);
 }

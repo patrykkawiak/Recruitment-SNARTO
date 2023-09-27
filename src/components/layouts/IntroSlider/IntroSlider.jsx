@@ -7,22 +7,48 @@ import IntroSliderText from './IntroSliderText';
 import Button from '../../UI/Button/Button';
 import PlainButton from '../../UI/PlainButton/PlainButton';
 import IntroSliderDot from './IntroSliderDot';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { SliderActions } from '../../../redux/slider-slice';
+SliderActions;
 
 const IntroSlider = () => {
-	const box = document.querySelector(`.${styles['slider-box']}`);
-	const handleSecondSlide = () => {
+	const index = useSelector((state) => state.slider.index);
+	const dispatch = useDispatch();
+
+	const prepareElements = () => {
+		const box = document.querySelector(`.${styles['slider-container']}`);
 		const viewPortWidth = window.innerWidth;
-		box.style.transform = `translateX(-${viewPortWidth}px)`;
+		return {
+			box,
+			viewPortWidth,
+		};
 	};
-	const handleFirstSlide = () => {
-		box.style.transform = `translateX(0)`;
+
+	const handleChangeImg = (index) => {
+		const { box, viewPortWidth } = prepareElements();
+
+		box.style.transform = `translateX(${-index * viewPortWidth}px)`;
+	};
+
+	useEffect(() => {
+		handleChangeImg(index);
+	}, []);
+
+	const handleNextSlide = () => {
+		dispatch(SliderActions.increaseIndex());
+			handleChangeImg(index + 1);
+	};
+	const handlePrevSlide = () => {
+		dispatch(SliderActions.decreaseIndex());
+		handleChangeImg(index - 1);
 	};
 
 	return (
 		<section className={styles.slider}>
-			<div className={styles['slider-box']}>
+			<div className={styles['slider-container']}>
 				<div className={styles['slider-item']}>
-					<div className={styles['slider-temp']}>
+					<div className={styles['slider-content']}>
 						<Link to={'/start'} className={styles['slider-link']}>
 							Skip
 						</Link>
@@ -43,15 +69,15 @@ const IntroSlider = () => {
 							}
 						/>
 						<div className={styles['slider-btns']}>
-							<PlainButton>back</PlainButton>
-							<Button type={'primary'} onClick={handleSecondSlide}>
+							<PlainButton disabled={true}>back</PlainButton>
+							<Button type={'primary'} onClick={handleNextSlide}>
 								next
 							</Button>
 						</div>
 					</div>
 				</div>
 				<div className={styles['slider-item']}>
-					<div className={styles['slider-temp']}>
+					<div className={styles['slider-content']}>
 						<Link to={'/start'} className={styles['slider-link']}>
 							Skip
 						</Link>
@@ -72,7 +98,7 @@ const IntroSlider = () => {
 							}
 						/>
 						<div className={styles['slider-btns']}>
-							<PlainButton onClick={handleFirstSlide}>back</PlainButton>
+							<PlainButton onClick={handlePrevSlide}>back</PlainButton>
 							<Button type={'primary'}>
 								<Link to={'/start'}>Next</Link>
 							</Button>
