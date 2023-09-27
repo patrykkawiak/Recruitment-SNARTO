@@ -1,0 +1,19 @@
+@use '../../../sass/base/' as *;
+
+.text {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	align-items: center;
+	max-width: 30rem;
+	color: $darker-white;
+
+	h2 {
+		font-size: 3.2rem;
+		font-weight: 700;
+	}
+	p {
+		font-size: 1.6rem;
+		text-align: center;
+	}
+}

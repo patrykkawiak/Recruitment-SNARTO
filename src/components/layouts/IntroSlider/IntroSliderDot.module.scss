@@ -1,0 +1,13 @@
+.dot {
+	height: 4px;
+	width: 3rem;
+	border-radius: 50px;
+
+	&-active {
+		background-color: white;
+	}
+
+	&-deactive {
+		background-color: gray;
+	}
+}

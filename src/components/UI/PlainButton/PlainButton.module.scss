@@ -1,0 +1,20 @@
+@use '../../../sass/base/' as *;
+
+.plain {
+	color: rgba(255, 255, 255, 0.44);
+	background-color: transparent;
+	text-transform: uppercase;
+	border: none;
+	font-size: 1.6rem;
+	padding: 1.2rem 2.4rem;
+	border: 2px solid transparent;
+	border-radius: 4px;
+	transition: 0.3s border;
+	cursor: pointer;
+}
+
+.plain:hover,
+.plain:active,
+.plain:focus {
+	border: 2px solid rgba(255, 255, 255, 0.44);
+}
