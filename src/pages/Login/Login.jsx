@@ -9,7 +9,7 @@ import SectionBox from '../../components/UI/SectionBox/SectionBox';
 const LoginPage = () => {
 
 	const loginHandler = (e) => {
-		e.prevent
+		e.preventDefault()
 	}
 
 	return (
