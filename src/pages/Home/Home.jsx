@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Loader from '../../components/UI/Loader/Loader';
+import Loader from '../../components/layouts/Loader/Loader';
 import { useState } from 'react';
 import IntroSlider from '../../components/layouts/IntroSlider/IntroSlider';
 import { createPortal } from 'react-dom';

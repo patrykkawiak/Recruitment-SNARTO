@@ -37,7 +37,7 @@ const IntroSlider = () => {
 
 	const handleNextSlide = () => {
 		dispatch(SliderActions.increaseIndex());
-			handleChangeImg(index + 1);
+		handleChangeImg(index + 1);
 	};
 	const handlePrevSlide = () => {
 		dispatch(SliderActions.decreaseIndex());
@@ -45,7 +45,7 @@ const IntroSlider = () => {
 	};
 
 	return (
-		<section className={styles.slider}>
+		<section className={`${styles.slider}`}>
 			<div className={styles['slider-container']}>
 				<div className={styles['slider-item']}>
 					<div className={styles['slider-content']}>

@@ -8,7 +8,7 @@ import SectionBox from '../../components/UI/SectionBox/SectionBox';
 
 const RegisterPage = () => {
 	return (
-		<Section>
+		<Section isMax={true}>
 			<SectionBox>
 				<div className={style.link}>
 					<Link to={'/start'}>

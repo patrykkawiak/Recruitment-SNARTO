@@ -7,8 +7,13 @@ import Section from '../../components/UI/Section/Section';
 import SectionBox from '../../components/UI/SectionBox/SectionBox';
 
 const LoginPage = () => {
+
+	const loginHandler = (e) => {
+		e.prevent
+	}
+
 	return (
-		<Section>
+		<Section isMax={true}>
 			<SectionBox>
 				<div className={style.link}>
 					<Link to={'/start'}>
@@ -17,7 +22,7 @@ const LoginPage = () => {
 				</div>
 				<div className={style.content}>
 					<Heading>Login</Heading>
-					<Form className={style.form}>
+					<form className={style.form} method='POST'>
 						<div className={style.inputs}>
 							<div className={style['input-box']}>
 								<label htmlFor='username'>Username</label>
@@ -37,7 +42,7 @@ const LoginPage = () => {
 							</div>
 						</div>
 						<Button type={'primary'}>Login</Button>
-					</Form>
+					</form>
 					<div className={style.or}>
 						<div className={style.breaker}>
 							<p>or</p>
@@ -56,3 +61,7 @@ const LoginPage = () => {
 	);
 };
 export default LoginPage;
+
+const LoginAction = (params) => {
+	
+}
