@@ -6,10 +6,11 @@ import Heading from '../../components/UI/Heading/Heading';
 import Section from '../../components/UI/Section/Section';
 import SectionBox from '../../components/UI/SectionBox/SectionBox';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../helpers/firebase-config';
+import { appleProvider, auth, provider } from '../../helpers/firebase-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Notification from '../../components/UI/Notification/Notification';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 const RegisterPage = () => {
 	const [email, setEmail] = useState(null);
@@ -65,9 +66,34 @@ const RegisterPage = () => {
 		e.preventDefault();
 
 		try {
-			const user = await createUserWithEmailAndPassword(auth, email, password);
+			await createUserWithEmailAndPassword(auth, email, password);
 			setStatus('success');
 		} catch (err) {
+			setStatus('error');
+			return;
+		}
+		setTimeout(() => {
+			navigate('/login');
+		}, 500);
+	};
+
+	const handleRegisterByGoogle = async () => {
+		try {
+			await signInWithPopup(auth, provider);
+			setStatus('succes');
+		} catch {
+			setStatus('error');
+			return;
+		}
+		setTimeout(() => {
+			navigate('/');
+		}, 500);
+	};
+	const handleRegisterByApple = async () => {
+		try {
+			await signInWithPopup(auth, appleProvider);
+			setStatus('succes');
+		} catch {
 			setStatus('error');
 			return;
 		}
@@ -156,8 +182,12 @@ const RegisterPage = () => {
 							<p>or</p>
 						</div>
 						<div className={style.btns}>
-							<Button type={'secondary'}>Register With Google</Button>
-							<Button type={'secondary'}>Register With Apple</Button>
+							<Button type={'secondary'} onClick={handleRegisterByGoogle}>
+								Register With Google
+							</Button>
+							<Button type={'secondary'} onClick={handleRegisterByApple}>
+								Register With Apple
+							</Button>
 							<p>
 								Already have an account<Link to={'/login'}>Login</Link>
 							</p>

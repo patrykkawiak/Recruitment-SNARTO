@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-
+import { GoogleAuthProvider } from 'firebase/auth';
+import { OAuthProvider } from "firebase/auth";
 const firebaseConfig = {
 	apiKey: 'AIzaSyD34DOyZJwdmvBz9NiTV3kARmlZoYwCCaE',
 	authDomain: 'snarto-bf3e3.firebaseapp.com',
@@ -13,3 +14,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+export const provider = new GoogleAuthProvider();
+
+export const appleProvider = new OAuthProvider('apple.com');
