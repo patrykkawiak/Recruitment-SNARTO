@@ -78,7 +78,7 @@ const RegisterPage = () => {
 
 	return (
 		<Section isMax={true}>
-			<Notification status={status} />
+			{/* <Notification status={status} /> */}
 			<SectionBox>
 				<div className={style.link}>
 					<Link to={'/start'}>
@@ -142,13 +142,13 @@ const RegisterPage = () => {
 						</div>
 						<Button
 							type={'primary'}
-							// disabled={
-							// 	isEmailValid && isPasswordValid && isSecondPasswordValid
-							// 		? false
-							// 		: true
-							// }
+							disabled={
+								isEmailValid && isPasswordValid && isSecondPasswordValid
+									? false
+									: true
+							}
 						>
-							Login
+							Register
 						</Button>
 					</form>
 					<div className={style.or}>
@@ -156,10 +156,10 @@ const RegisterPage = () => {
 							<p>or</p>
 						</div>
 						<div className={style.btns}>
-							<Button type={'secondary'}>Login With Google</Button>
-							<Button type={'secondary'}>Login With Apple</Button>
+							<Button type={'secondary'}>Register With Google</Button>
+							<Button type={'secondary'}>Register With Apple</Button>
 							<p>
-								Don't have an account?<Link to={'/register'}>Register</Link>
+								Already have an account<Link to={'/login'}>Login</Link>
 							</p>
 						</div>
 					</div>
