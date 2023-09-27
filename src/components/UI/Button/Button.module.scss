@@ -3,18 +3,30 @@
 .button {
 	padding: 1.2rem 2.4rem;
 	font-size: 1.6rem;
-	background-color: $main-color;
 	border-radius: 4px;
 	text-transform: uppercase;
 	color: $white;
-	border: none;
 	transition: background-color 0.3s, color 0.3s;
 	cursor: pointer;
 }
 
-.button:hover,
-.button:active,
-.button:focus {
+.primary {
+	background-color: $main-color;
+	border: 2px solid transparent;
+}
+.secondary {
+	background-color: transparent;
+	border: 2px solid $main-color;
+}
+
+.primary:hover,
+.primary:active,
+.primary:focus {
 	background-color: $darker-main;
 	color: $semi-darker-white;
+}
+.secondary:hover,
+.secondary:active,
+.secondary:focus {
+	background-color: $darker-main;
 }

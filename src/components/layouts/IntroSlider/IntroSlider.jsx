@@ -23,7 +23,9 @@ const IntroSlider = () => {
 			<div className={styles['slider-box']}>
 				<div className={styles['slider-item']}>
 					<div className={styles['slider-temp']}>
-						<Link to={'/start'}>Skip</Link>
+						<Link to={'/start'} className={styles['slider-link']}>
+							Skip
+						</Link>
 						<div className={styles['slider-ctn']}>
 							<img
 								src={FirstSliderImg}
@@ -42,13 +44,17 @@ const IntroSlider = () => {
 						/>
 						<div className={styles['slider-btns']}>
 							<PlainButton>back</PlainButton>
-							<Button onClick={handleSecondSlide}>next</Button>
+							<Button type={'primary'} onClick={handleSecondSlide}>
+								next
+							</Button>
 						</div>
 					</div>
 				</div>
 				<div className={styles['slider-item']}>
 					<div className={styles['slider-temp']}>
-						<Link to={'/start'}>Skip</Link>
+						<Link to={'/start'} className={styles['slider-link']}>
+							Skip
+						</Link>
 						<div className={styles['slider-ctn']}>
 							<img
 								src={SecondSliderImg}
@@ -67,7 +73,9 @@ const IntroSlider = () => {
 						/>
 						<div className={styles['slider-btns']}>
 							<PlainButton onClick={handleFirstSlide}>back</PlainButton>
-							<Button>next</Button>
+							<Button type={'primary'}>
+								<Link to={'/start'}>Next</Link>
+							</Button>
 						</div>
 					</div>
 				</div>

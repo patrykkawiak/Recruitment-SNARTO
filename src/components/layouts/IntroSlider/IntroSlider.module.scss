@@ -24,20 +24,20 @@
 		flex-direction: column;
 		max-width: max-content;
 		position: relative;
-		a {
-			position: absolute;
-			top: -4rem;
-			color: rgba(255, 255, 255, 0.44);
-			background-color: transparent;
-			text-transform: uppercase;
-			border: none;
-			font-size: 1.6rem;
-			padding: 1.2rem 2.4rem;
-			border: 2px solid transparent;
-			border-radius: 4px;
-			transition: 0.3s border;
-			cursor: pointer;
-		}
+	}
+	&-link {
+		position: absolute;
+		top: -4rem;
+		color: rgba(255, 255, 255, 0.44);
+		background-color: transparent;
+		text-transform: uppercase;
+		border: none;
+		font-size: 1.6rem;
+		padding: 1.2rem 2.4rem;
+		border: 2px solid transparent;
+		border-radius: 4px;
+		transition: 0.3s border;
+		cursor: pointer;
 	}
 
 	&-ctn {

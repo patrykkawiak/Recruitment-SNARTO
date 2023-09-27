@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import Loader from '../components/UI/Loader/Loader';
+import Loader from '../../components/UI/Loader/Loader';
 import { useState } from 'react';
-import IntroSlider from '../components/layouts/IntroSlider/IntroSlider';
+import IntroSlider from '../../components/layouts/IntroSlider/IntroSlider';
 
 const HomePage = () => {
 	const [loader, setloader] = useState(true);
