@@ -3,10 +3,12 @@ import style from './Start.module.scss';
 import IntroSliderText from '../../components/layouts/IntroSlider/IntroSliderText';
 import Button from '../../components/UI/Button/Button';
 import LeftArrow from '../../assets/svg/LeftArrow';
+import Section from '../../components/UI/Section/Section';
+import SectionBox from '../../components/UI/SectionBox/SectionBox';
 const StartPage = () => {
 	return (
-		<section className={`${style.start} section-padding`}>
-			<div className={style.box}>
+		<Section>
+			<SectionBox>
 				<div className={style.link}>
 					<Link to={'/'}>
 						<LeftArrow />
@@ -28,8 +30,8 @@ const StartPage = () => {
 						</Button>
 					</div>
 				</div>
-			</div>
-		</section>
+			</SectionBox>
+		</Section>
 	);
 };
 export default StartPage;
