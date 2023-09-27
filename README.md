@@ -1,6 +1,6 @@
 # Snarto Recruitment App
 
-🌍 Hosted page: [Recrutiment Todo](https://portfolio-patrykkawiak.vercel.app/)
+🌍 Hosted page: [Recrutiment Todo](https://recruitment-snarto.vercel.app)
 
 ## Technologies
 
