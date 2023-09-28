@@ -8,10 +8,12 @@ import SectionBox from '../../components/UI/SectionBox/SectionBox';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../helpers/firebase-config';
 import { useState } from 'react';
+import Notification from '../../components/UI/Notification/Notification';
 
 const LoginPage = () => {
 	const [password, setPassword] = useState(null);
 	const [email, setEmail] = useState(null);
+
 
 	const navigate = useNavigate();
 
@@ -19,14 +21,9 @@ const LoginPage = () => {
 		e.preventDefault();
 
 		try {
-			const loggedUser = await signInWithEmailAndPassword(
-				auth,
-				email,
-				password
-			);
-			// setStatus('success');
+			signInWithEmailAndPassword(auth, email, password);
 		} catch (err) {
-			// setStatus('error');
+			console.log('eror');
 			return;
 		}
 		setTimeout(() => {

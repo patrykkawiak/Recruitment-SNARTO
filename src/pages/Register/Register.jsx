@@ -104,7 +104,6 @@ const RegisterPage = () => {
 
 	return (
 		<Section isMax={true}>
-			{/* <Notification status={status} /> */}
 			<SectionBox>
 				<div className={style.link}>
 					<Link to={'/start'}>
