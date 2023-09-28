@@ -1,6 +1,6 @@
 # Snarto Recruitment App
 
-🌍 Hosted page: [Recrutiment Todo](https://portfolio-patrykkawiak.vercel.app/)
+🌍 Hosted page: [Recrutiment Todo](https://recruitment-snarto.vercel.app)
 
 ## Technologies
 
@@ -35,7 +35,7 @@
 Clone the project
 
 ```bash
-  git clone https://github.com/patrykkawiak/Portfolio.git
+  git clone https://github.com/patrykkawiak/Recruitment-SNARTO.git
 ```
 
 Go to the project directory
