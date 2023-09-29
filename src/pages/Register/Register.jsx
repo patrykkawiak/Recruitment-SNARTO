@@ -9,8 +9,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { appleProvider, auth, provider } from '../../helpers/firebase-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Notification from '../../components/UI/Notification/Notification';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 
 const RegisterPage = () => {
 	const [email, setEmail] = useState(null);
@@ -23,8 +22,6 @@ const RegisterPage = () => {
 
 	const [secondPassword, setSecondPassword] = useState(null);
 	const [isSecondPasswordValid, setIsSecondPasswordValid] = useState(false);
-
-	const [status, setStatus] = useState(null);
 
 	const navigate = useNavigate();
 
@@ -67,9 +64,7 @@ const RegisterPage = () => {
 
 		try {
 			await createUserWithEmailAndPassword(auth, email, password);
-			setStatus('success');
 		} catch (err) {
-			setStatus('error');
 			return;
 		}
 		setTimeout(() => {
@@ -80,9 +75,7 @@ const RegisterPage = () => {
 	const handleRegisterByGoogle = async () => {
 		try {
 			await signInWithPopup(auth, provider);
-			setStatus('succes');
 		} catch {
-			setStatus('error');
 			return;
 		}
 		setTimeout(() => {
@@ -115,17 +108,17 @@ const RegisterPage = () => {
 					<form className={style.form} onSubmit={handleRegister}>
 						<div className={style.inputs}>
 							<div className={style['input-box']}>
-								<label htmlFor='username'>
+								<label htmlFor='email'>
 									{!isEmailValid && isEmailTouched && (
-										<p style={{ color: 'tomato' }}>Email is not Valid</p>
+										<p style={{ color: 'tomato' }}>Email is not valid</p>
 									)}
 									{isEmailTouched && isEmailValid && 'Email'}
 									{!isEmailTouched && !isEmailValid && 'Email'}
 								</label>
 								<input
-									type='text'
-									id='username'
-									placeholder='Enter your Username'
+									type='email'
+									id='email'
+									placeholder='Enter your Email'
 									onChange={(e) => {
 										setEmail(e.target.value);
 										checkIsEmailValid();
@@ -136,7 +129,9 @@ const RegisterPage = () => {
 							<div className={style['input-box']}>
 								<label htmlFor='password'>
 									{!isPasswordValid && isPasswordTouched && (
-										<p style={{ color: 'tomato' }}>Password is not Valid</p>
+										<p style={{ color: 'tomato' }}>
+											Password requires (9 chars, 1 capital letter, 1 number)
+										</p>
 									)}
 									{isPasswordTouched && isPasswordValid && 'Password'}
 									{!isPasswordTouched && !isPasswordValid && 'Password'}

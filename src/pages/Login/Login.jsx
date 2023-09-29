@@ -14,21 +14,23 @@ const LoginPage = () => {
 	const [password, setPassword] = useState(null);
 	const [email, setEmail] = useState(null);
 
-
 	const navigate = useNavigate();
 
 	const loginHandler = async (e) => {
 		e.preventDefault();
 
 		try {
-			signInWithEmailAndPassword(auth, email, password);
+			const user = await signInWithEmailAndPassword(auth, email, password);
+			if (!user.user) {
+				return;
+			}
+			setTimeout(() => {
+				navigate('/');
+			}, 500);
 		} catch (err) {
 			console.log('eror');
 			return;
 		}
-		setTimeout(() => {
-			navigate('/');
-		}, 500);
 	};
 
 	return (
@@ -44,11 +46,11 @@ const LoginPage = () => {
 					<form className={style.form} method='POST' onSubmit={loginHandler}>
 						<div className={style.inputs}>
 							<div className={style['input-box']}>
-								<label htmlFor='username'>Username</label>
+								<label htmlFor='email'>Email</label>
 								<input
-									type='text'
-									id='username'
-									placeholder='Enter your Username'
+									type='email'
+									id='email'
+									placeholder='Enter your Email'
 									onChange={(e) => {
 										setEmail(e.target.value);
 									}}
