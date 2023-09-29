@@ -3,21 +3,25 @@ import RightArrow from '../../../assets/svg/RightArrow';
 import Mark from '../../../assets/svg/Mark';
 import { useUser } from '../../../hooks/useUser';
 import style from './Modal.module.scss';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-const Modal = ({ closeModal }) => {
+const Modal = ({ closeModal, getData }) => {
 	const user = useUser();
-	const [todo, setTodo] = useState(null);
-
+	const todoRef = useRef();
 	const addNewTask = async () => {
 		await fetch(
 			'https://snarto-bf3e3-default-rtdb.europe-west1.firebasedatabase.app/tasks.json',
 			{
 				method: 'POST',
-				body: JSON.stringify({ uid: user, todo, isDone: false }),
-				'Content-Type': 'application/json',
+				body: JSON.stringify({
+					uid: user,
+					todo: todoRef.current.value,
+					isDone: false,
+				}),
+				headers: { 'Content-Type': 'application/json' },
 			}
 		);
+		getData();
 		closeModal();
 	};
 
@@ -28,13 +32,11 @@ const Modal = ({ closeModal }) => {
 				<input
 					type='text'
 					placeholder='What are you going to do?'
-					onChange={(e) => {
-						setTodo(e.target.value);
-					}}
+					ref={todoRef}
 				/>
 				<div className={style.btns}>
 					<button onClick={closeModal}>
-						<Mark />
+						<Mark fill={'#8685E7'} />
 					</button>
 					<button onClick={addNewTask}>
 						<RightArrow />

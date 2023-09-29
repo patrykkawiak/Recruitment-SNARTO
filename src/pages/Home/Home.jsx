@@ -4,12 +4,11 @@ import { useState } from 'react';
 import IntroSlider from '../../components/layouts/IntroSlider/IntroSlider';
 import { createPortal } from 'react-dom';
 import { useUser } from '../../hooks/useUser';
-import { getAuth, signOut } from 'firebase/auth';
-import { auth } from '../../helpers/firebase-config';
 import style from './Home.module.scss';
-import Plus from '../../assets/svg/Plus';
-import CheckListImg from '../../assets/img/tasks/Checklist.png';
 import Modal from '../../components/layouts/Modal/Modal';
+import Navigation from '../../components/layouts/Navigation/Navigation';
+import IntroTasks from '../../components/UI/IntroTasks/IntroTasks';
+import TasksList from '../../components/layouts/Tasks/TasksList';
 
 const HomePage = () => {
 	const [loading, setLoading] = useState(true);
@@ -17,12 +16,6 @@ const HomePage = () => {
 	const [tasks, setTasks] = useState([]);
 
 	const user = useUser();
-
-	const userSignOut = () => {
-		signOut(auth)
-			.then(() => {})
-			.catch((err) => console.log(err));
-	};
 
 	useEffect(() => {
 		let timeout;
@@ -42,23 +35,20 @@ const HomePage = () => {
 	const handleCloseModal = () => {
 		setModal(false);
 	};
+	const handleOpenModal = () => {
+		setModal(true);
+	};
 
 	const fetchTasks = useCallback(async () => {
 		try {
 			const response = await fetch(
 				`https://snarto-bf3e3-default-rtdb.europe-west1.firebasedatabase.app/tasks.json?print=pretty&orderBy="uid"&equalTo="${user}"`
 			);
-			// const response = await fetch(
-			// 	'https://snarto-bf3e3-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
-			// );
 			if (!response.ok) {
 				throw new Error('Something went wrong!');
 			}
-
 			const data = await response.json();
-
 			const fetchedTasks = [];
-
 			for (const key in data) {
 				fetchedTasks.push({
 					id: key,
@@ -67,58 +57,32 @@ const HomePage = () => {
 					isDone: data[key].isDone,
 				});
 			}
-			// if (user) {
-			// 	const filteredTasks = fetchedTasks.filter((task) => task.uid === user);
-			// 	setTasks(filteredTasks);
-			// }
 			setTasks(fetchedTasks);
 		} catch (error) {
 			console.log(error);
 		}
 	});
 
-	// useEffect(() => {
-	// 	fetchTasks();
-	// }, [user, tasks]);
 	useEffect(() => {
 		fetchTasks();
-	}, [fetchTasks]);
+	}, [user]);
 
 	return (
 		<>
 			{loading && createPortal(<Loader />, document.getElementById('loader'))}
 			{user ? (
-				<section className={style.tasks}>
-					{tasks.length === 0 && (
-						<div className={style.checklist}>
-							<img src={CheckListImg} alt='check list' />
-							<div className={style.content}>
-								<h2>What do you want to do today?</h2>
-								<p>Tap + to add your tasks</p>
-							</div>
-						</div>
+				<section className={`${style.tasks}`}>
+					{tasks.length === 0 ? (
+						<IntroTasks />
+					) : (
+						<TasksList tasks={tasks} getData={fetchTasks} />
 					)}
-					{tasks.map((el) => (
-						<li key={el.id}>{el.todo}</li>
-					))}
 					{modal &&
 						createPortal(
-							<Modal closeModal={handleCloseModal} />,
+							<Modal closeModal={handleCloseModal} getData={fetchTasks} />,
 							document.getElementById('modal')
 						)}
-					<nav className={style.nav}>
-						<button onClick={userSignOut} className={style.logout}>
-							Logout
-						</button>
-						<button
-							className={style['add-btn']}
-							onClick={() => {
-								setModal(true);
-							}}
-						>
-							<Plus />
-						</button>
-					</nav>
+					<Navigation openModal={handleOpenModal} />
 				</section>
 			) : (
 				<IntroSlider />

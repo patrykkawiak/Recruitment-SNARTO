@@ -1,0 +1,41 @@
+@use '../../../sass/base/' as *;
+
+.item {
+	width: 100%;
+	background-color: $modal-color;
+	display: flex;
+	gap: 0.5rem;
+	color: $darker-white;
+	font-size: 1.6rem;
+	align-items: center;
+	padding: 0.5rem;
+	border-radius: 4px;
+	position: relative;
+
+	button {
+		border: none;
+		background-color: transparent;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+	.done {
+		padding: 1rem;
+	}
+	.delete {
+		position: absolute;
+		right: 10px;
+		opacity: 0;
+		padding: 1rem;
+		transition: opacity 0.3s;
+	}
+}
+
+.item:hover .delete {
+	opacity: 1;
+}
+
+.compleated {
+	padding: 1rem;
+}

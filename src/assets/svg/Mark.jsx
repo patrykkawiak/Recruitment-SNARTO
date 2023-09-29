@@ -1,9 +1,9 @@
-const Mark = () => {
+const Mark = ({fill}) => {
 	return (
 		<svg
-			fill='#8685E7'
-			height='20px'
-			width='20px'
+			fill={fill}
+			height='18px'
+			width='18px'
 			version='1.1'
 			id='Capa_1'
 			xmlns='http://www.w3.org/2000/svg'
