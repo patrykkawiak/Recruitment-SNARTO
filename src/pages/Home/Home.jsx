@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import Loader from '../../components/layouts/Loader/Loader';
 import { useState } from 'react';
 import IntroSlider from '../../components/layouts/IntroSlider/IntroSlider';
 import { createPortal } from 'react-dom';
 import { useUser } from '../../hooks/useUser';
-import { signOut } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 import { auth } from '../../helpers/firebase-config';
 import style from './Home.module.scss';
 import Plus from '../../assets/svg/Plus';
 import CheckListImg from '../../assets/img/tasks/Checklist.png';
+import Modal from '../../components/layouts/Modal/Modal';
 
 const HomePage = () => {
 	const [loading, setLoading] = useState(true);
-	const [todo, setTodo] = useState(null);
+	const [modal, setModal] = useState(false);
+	const [tasks, setTasks] = useState([]);
 
 	const user = useUser();
 
@@ -24,7 +26,7 @@ const HomePage = () => {
 
 	useEffect(() => {
 		let timeout;
-		if (user) {
+		if (user && tasks.length > 0) {
 			setLoading(false);
 		} else {
 			timeout = setTimeout(() => {
@@ -37,64 +39,83 @@ const HomePage = () => {
 		};
 	}, [user]);
 
-	const SubmitTask = async (e) => {
-		e.preventDefault();
-		const response = await fetch(
-			'https://snarto-bf3e3-default-rtdb.europe-west1.firebasedatabase.app/tasks.json',
-			{
-				method: 'POST',
-				body: JSON.stringify({ id: user, text: todo }),
-				'Content-Type': 'application/json',
+	const handleCloseModal = () => {
+		setModal(false);
+	};
+
+	const fetchTasks = useCallback(async () => {
+		try {
+			const response = await fetch(
+				`https://snarto-bf3e3-default-rtdb.europe-west1.firebasedatabase.app/tasks.json?print=pretty&orderBy="uid"&equalTo="${user}"`
+			);
+			// const response = await fetch(
+			// 	'https://snarto-bf3e3-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
+			// );
+			if (!response.ok) {
+				throw new Error('Something went wrong!');
 			}
-		);
-	};
-	const GetTask = async (e) => {
-		e.preventDefault();
-		const response = await fetch(
-			'https://snarto-bf3e3-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'
-		);
 
-		const data = await response.json();
-		const loadedTasks = [];
+			const data = await response.json();
 
-		for (const key in data) {
-			loadedTasks.push({
-				id: key,
-				uui: data[key].id,
-				text: data[key].text,
-			});
+			const fetchedTasks = [];
+
+			for (const key in data) {
+				fetchedTasks.push({
+					id: key,
+					uid: data[key].uid,
+					todo: data[key].todo,
+					isDone: data[key].isDone,
+				});
+			}
+			// if (user) {
+			// 	const filteredTasks = fetchedTasks.filter((task) => task.uid === user);
+			// 	setTasks(filteredTasks);
+			// }
+			setTasks(fetchedTasks);
+		} catch (error) {
+			console.log(error);
 		}
-		const filtered = loadedTasks.filter((task) => task.uui === user);
-		console.log(filtered);
-	};
+	});
+
+	// useEffect(() => {
+	// 	fetchTasks();
+	// }, [user, tasks]);
+	useEffect(() => {
+		fetchTasks();
+	}, [fetchTasks]);
 
 	return (
 		<>
 			{loading && createPortal(<Loader />, document.getElementById('loader'))}
 			{user ? (
 				<section className={style.tasks}>
-					<div className={style.checklist}>
-						<img src={CheckListImg} alt='check list' />
-						<div className={style.content}>
-							<h2>What do you want to do today?</h2>
-							<p>Tap + to add your tasks</p>
+					{tasks.length === 0 && (
+						<div className={style.checklist}>
+							<img src={CheckListImg} alt='check list' />
+							<div className={style.content}>
+								<h2>What do you want to do today?</h2>
+								<p>Tap + to add your tasks</p>
+							</div>
 						</div>
-					</div>
-					<form method='POST' onSubmit={SubmitTask}>
-						<input
-							type='text'
-							onChange={(e) => {
-								setTodo(e.target.value);
-							}}
-						/>
-						<button>Send</button>
-					</form>
-					<button onClick={GetTask}>Get</button>
+					)}
+					{tasks.map((el) => (
+						<li key={el.id}>{el.todo}</li>
+					))}
+					{modal &&
+						createPortal(
+							<Modal closeModal={handleCloseModal} />,
+							document.getElementById('modal')
+						)}
 					<nav className={style.nav}>
 						<button onClick={userSignOut} className={style.logout}>
 							Logout
 						</button>
-						<button className={style['add-btn']}>
+						<button
+							className={style['add-btn']}
+							onClick={() => {
+								setModal(true);
+							}}
+						>
 							<Plus />
 						</button>
 					</nav>
