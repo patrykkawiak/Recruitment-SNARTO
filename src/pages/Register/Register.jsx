@@ -13,6 +13,8 @@ import { signInWithPopup } from 'firebase/auth';
 import Google from '../../assets/svg/Google';
 import Apple from '../../assets/svg/Apple';
 import { useUser } from '../../hooks/useUser';
+import { googleConnection } from '../../helpers/google-connection';
+import { appleConnection } from '../../helpers/apple-connection';
 
 const RegisterPage = () => {
 	const user = useUser();
@@ -72,35 +74,27 @@ const RegisterPage = () => {
 
 		try {
 			await createUserWithEmailAndPassword(auth, email, password);
-		} catch (err) {
-			return;
-		}
+		} catch (err) {}
 		setTimeout(() => {
 			navigate('/login');
 		}, 500);
 	};
 
 	const handleRegisterByGoogle = async () => {
-		try {
-			await signInWithPopup(auth, provider);
-		} catch {
-			return;
+		const connection = await googleConnection();
+		if (connection) {
+			setTimeout(() => {
+				navigate('/');
+			}, 500);
 		}
-		setTimeout(() => {
-			navigate('/');
-		}, 500);
 	};
 	const handleRegisterByApple = async () => {
-		try {
-			await signInWithPopup(auth, appleProvider);
-			setStatus('succes');
-		} catch {
-			setStatus('error');
-			return;
+		const connection = await appleConnection();
+		if (connection) {
+			setTimeout(() => {
+				navigate('/');
+			}, 500);
 		}
-		setTimeout(() => {
-			navigate('/');
-		}, 500);
 	};
 
 	return (

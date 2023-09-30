@@ -10,11 +10,11 @@ import Navigation from '../../components/layouts/Navigation/Navigation';
 import IntroTasks from '../../components/UI/IntroTasks/IntroTasks';
 import TasksList from '../../components/layouts/Tasks/TasksList';
 
-
 const HomePage = () => {
 	const [loading, setLoading] = useState(true);
 	const [modal, setModal] = useState(false);
 	const [tasks, setTasks] = useState([]);
+	const [error, setError] = useState(false);
 
 	const user = useUser();
 
@@ -60,7 +60,7 @@ const HomePage = () => {
 			}
 			setTasks(fetchedTasks);
 		} catch (error) {
-			console.log(error);
+			setError(true);
 		}
 	});
 
@@ -76,7 +76,7 @@ const HomePage = () => {
 					{tasks.length === 0 ? (
 						<IntroTasks />
 					) : (
-						<TasksList tasks={tasks} getData={fetchTasks} />
+						<TasksList tasks={tasks} getData={fetchTasks} isError={error} />
 					)}
 					{modal &&
 						createPortal(

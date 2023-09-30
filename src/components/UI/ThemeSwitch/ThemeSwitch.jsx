@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Bulb from '../../../assets/svg/Bulg';
+import Bulb from '../../../assets/svg/Bulb';
 import style from './ThemeSwitch.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeActions } from '../../../redux/theme-slice';

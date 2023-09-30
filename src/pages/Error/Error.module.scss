@@ -6,8 +6,10 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 1.5rem;
+	background-color: var(--bg-color);
 }
 
 .heading {
 	font-size: 3.2rem;
+	color: var(--white);
 }

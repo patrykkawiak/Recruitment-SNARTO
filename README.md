@@ -28,6 +28,7 @@
 - Working Auth
 - Register/Login
 - SPA
+- Light/Dark mode
 - Modern Design
 
 ## Run Locally

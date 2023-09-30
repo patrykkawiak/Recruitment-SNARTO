@@ -11,7 +11,7 @@ const databaseHelper = async (params, getData, id) => {
 		);
 		getData();
 	} catch (err) {
-		console.log('error');
+		console.log(err);
 	}
 };
 export default databaseHelper;

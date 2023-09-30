@@ -3,7 +3,7 @@ import TaskItem from './TaskItem';
 import style from './TasksList.module.scss';
 import SearchBar from './SearchBar';
 
-const TasksList = ({ tasks, getData }) => {
+const TasksList = ({ tasks, getData, isError }) => {
 	const [searchData, setSearchData] = useState('');
 
 	const inProgress = tasks.filter((task) => task.isDone === false);
@@ -27,18 +27,24 @@ const TasksList = ({ tasks, getData }) => {
 
 	return (
 		<>
-			<SearchBar searchData={getSearchParams} />
-			<ul className={style.list}>
-				{filtredinProgressItems.map((task) => (
-					<TaskItem item={task} getData={getData} />
-				))}
-				{filtredCompletedItems.length > 0 ? (
-					<p className={style.breaker}>Completed</p>
-				) : null}
-				{filtredCompletedItems.map((task) => (
-					<TaskItem item={task} isCompleated={true} getData={getData} />
-				))}
-			</ul>
+			{!isError ? (
+				<>
+					<SearchBar searchData={getSearchParams} />
+					<ul className={style.list}>
+						{filtredinProgressItems.map((task) => (
+							<TaskItem item={task} getData={getData} />
+						))}
+						{filtredCompletedItems.length > 0 ? (
+							<p className={style.breaker}>Completed</p>
+						) : null}
+						{filtredCompletedItems.map((task) => (
+							<TaskItem item={task} isCompleated={true} getData={getData} />
+						))}
+					</ul>
+				</>
+			) : (
+				<p>Failed to fetch!</p>
+			)}
 		</>
 	);
 };
