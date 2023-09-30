@@ -7,7 +7,7 @@ import IntroSliderText from './IntroSliderText';
 import Button from '../../UI/Button/Button';
 import PlainButton from '../../UI/PlainButton/PlainButton';
 import IntroSliderDot from './IntroSliderDot';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SliderActions } from '../../../redux/slider-slice';
 SliderActions;

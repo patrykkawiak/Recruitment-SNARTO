@@ -2,7 +2,7 @@
 	width: 100vw;
 	height: max-content;
 	overflow: hidden;
-	padding: 4rem 0;
+	padding: 6rem 0 4rem 0;
 
 	&-container {
 		width: 200%;
@@ -28,7 +28,7 @@
 	}
 	&-link {
 		position: absolute;
-		top: -4rem;
+		top: -5rem;
 		color: var(--plain-button);
 		background-color: transparent;
 		text-transform: uppercase;
