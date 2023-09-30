@@ -10,6 +10,8 @@ import { appleProvider, auth, provider } from '../../helpers/firebase-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from 'firebase/auth';
+import Google from '../../assets/svg/Google';
+import Apple from '../../assets/svg/Apple';
 
 const RegisterPage = () => {
 	const [email, setEmail] = useState(null);
@@ -20,7 +22,6 @@ const RegisterPage = () => {
 	const [isPasswordValid, setIsPasswordValid] = useState(false);
 	const [isPasswordTouched, setIsPasswordTouched] = useState(false);
 
-	const [secondPassword, setSecondPassword] = useState(null);
 	const [isSecondPasswordValid, setIsSecondPasswordValid] = useState(false);
 
 	const navigate = useNavigate();
@@ -51,7 +52,7 @@ const RegisterPage = () => {
 		setIsPasswordTouched(true);
 	};
 
-	const checkIsSecondPasswordMatch = () => {
+	const checkIsSecondPasswordMatch = (secondPassword) => {
 		if (secondPassword === password) {
 			setIsSecondPasswordValid(true);
 		} else {
@@ -124,13 +125,14 @@ const RegisterPage = () => {
 										checkIsEmailValid();
 									}}
 									onFocus={checkIsEmailTouched}
+									onBlur={checkIsEmailValid}
 								/>
 							</div>
 							<div className={style['input-box']}>
 								<label htmlFor='password'>
 									{!isPasswordValid && isPasswordTouched && (
 										<p style={{ color: 'tomato' }}>
-											Password requires (9 chars, 1 capital letter, 1 number)
+											Password requires (10 chars, 1 capital letter, 1 number)
 										</p>
 									)}
 									{isPasswordTouched && isPasswordValid && 'Password'}
@@ -154,9 +156,8 @@ const RegisterPage = () => {
 									id='confirm'
 									placeholder='••••••••••••'
 									onChange={(e) => {
-										setSecondPassword(e.target.value);
+										checkIsSecondPasswordMatch(e.target.value);
 									}}
-									onBlur={checkIsSecondPasswordMatch}
 								/>
 							</div>
 						</div>
@@ -177,10 +178,16 @@ const RegisterPage = () => {
 						</div>
 						<div className={style.btns}>
 							<Button type={'secondary'} onClick={handleRegisterByGoogle}>
-								Register With Google
+								<div className={style['btns-ctn']}>
+									<Google />
+									<span>Register With Google</span>
+								</div>
 							</Button>
 							<Button type={'secondary'} onClick={handleRegisterByApple}>
-								Register With Apple
+								<div className={style['btns-ctn']}>
+									<Apple />
+									<span>Register With Apple</span>
+								</div>
 							</Button>
 							<p>
 								Already have an account<Link to={'/login'}>Login</Link>

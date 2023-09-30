@@ -9,6 +9,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../helpers/firebase-config';
 import { useState } from 'react';
 import Notification from '../../components/UI/Notification/Notification';
+import Google from '../../assets/svg/Google';
+import Apple from '../../assets/svg/Apple';
 
 const LoginPage = () => {
 	const [password, setPassword] = useState(null);
@@ -75,8 +77,18 @@ const LoginPage = () => {
 							<p>or</p>
 						</div>
 						<div className={style.btns}>
-							<Button type={'secondary'}>Login With Google</Button>
-							<Button type={'secondary'}>Login With Appe</Button>
+							<Button type={'secondary'}>
+								<div className={style['btns-ctn']}>
+									<Google />
+									<span>Login With Google</span>
+								</div>
+							</Button>
+							<Button type={'secondary'}>
+								<div className={style['btns-ctn']}>
+									<Apple />
+									<span>Login With Apple</span>
+								</div>
+							</Button>
 							<p>
 								Don't have an account?<Link to={'/register'}>Register</Link>
 							</p>

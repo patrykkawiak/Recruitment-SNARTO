@@ -23,10 +23,10 @@ const StartPage = () => {
 					/>
 					<div className={style.btns}>
 						<Button type={'primary'}>
-							<Link to={'/login'}>Login</Link>
+							<Link to={'/login'}>LOGIN</Link>
 						</Button>
 						<Button type={'secondary'}>
-							<Link to={'/register'}>Create Account</Link>
+							<Link to={'/register'}>CREATE ACCOUNT</Link>
 						</Button>
 					</div>
 				</div>

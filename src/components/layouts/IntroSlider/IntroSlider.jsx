@@ -50,7 +50,7 @@ const IntroSlider = () => {
 				<div className={styles['slider-item']}>
 					<div className={styles['slider-content']}>
 						<Link to={'/start'} className={styles['slider-link']}>
-							Skip
+							SKIP
 						</Link>
 						<div className={styles['slider-ctn']}>
 							<img
@@ -71,7 +71,7 @@ const IntroSlider = () => {
 						<div className={styles['slider-btns']}>
 							<PlainButton disabled={true}>back</PlainButton>
 							<Button type={'primary'} onClick={handleNextSlide}>
-								next
+								NEXT
 							</Button>
 						</div>
 					</div>
@@ -100,7 +100,7 @@ const IntroSlider = () => {
 						<div className={styles['slider-btns']}>
 							<PlainButton onClick={handlePrevSlide}>back</PlainButton>
 							<Button type={'primary'}>
-								<Link to={'/start'}>Next</Link>
+								<Link to={'/start'}>NEXT</Link>
 							</Button>
 						</div>
 					</div>

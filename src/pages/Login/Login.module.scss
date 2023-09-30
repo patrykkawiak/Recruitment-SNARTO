@@ -72,6 +72,13 @@
 	flex-direction: column;
 	gap: 1.5rem;
 
+	&-ctn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+
 	p {
 		display: flex;
 		justify-content: center;
