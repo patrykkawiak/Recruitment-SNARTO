@@ -7,7 +7,7 @@ const Circle = () => {
 			viewBox='0 0 16 16'
 			fill='none'
 		>
-			<circle cx='8' cy='8' r='8' fill='#363636' />
+			<circle cx='8' cy='8' r='8' fill='transparent' />
 			<circle
 				cx='8'
 				cy='8'

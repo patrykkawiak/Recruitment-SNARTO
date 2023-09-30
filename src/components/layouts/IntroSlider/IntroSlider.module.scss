@@ -29,7 +29,7 @@
 	&-link {
 		position: absolute;
 		top: -4rem;
-		color: rgba(255, 255, 255, 0.44);
+		color: var(--plain-button);
 		background-color: transparent;
 		text-transform: uppercase;
 		border: none;

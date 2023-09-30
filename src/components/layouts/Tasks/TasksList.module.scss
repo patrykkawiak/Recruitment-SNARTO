@@ -7,14 +7,13 @@
 	max-width: 40rem;
 	gap: 2rem;
 	padding: 3rem 2rem;
-    padding-top: 1rem;
+	padding-top: 1rem;
 }
 
 .breaker {
-	background-color: $modal-color;
+	background-color: var(--modal-color);
 	max-width: max-content;
 	font-size: 1.2rem;
 	padding: 1rem;
 	border-radius: 6px;
 }
-

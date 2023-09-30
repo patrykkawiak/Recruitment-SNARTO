@@ -29,18 +29,19 @@
 
 	label {
 		font-size: 1.6rem;
+		color: var(--white);
 	}
 
 	input {
 		padding: 1.2rem;
 		font-size: 1.6rem;
-		background-color: $bg-input;
-		border: 1px solid $border-input;
+		background-color: var(--bg-input);
+		border: 1px solid var(--border-input);
 		border-radius: 4px;
-		color: $white;
+		color: var(--white);
 	}
 	input::placeholder {
-		color: $dark-input-text;
+		color: var(--dark-input-text);
 	}
 }
 
@@ -51,7 +52,7 @@
 
 	.breaker {
 		position: relative;
-		background-color: $border-input;
+		background-color: var(--border-input);
 		width: 100%;
 		height: 1px;
 		p {
@@ -60,8 +61,8 @@
 			top: -1.3rem;
 			left: 50%;
 			transform: translateX(-50%);
-			color: $border-input;
-			background-color: $bg-color;
+			color: var(--border-input);
+			background-color: var(--bg-color);
 			font-size: 1.6rem;
 		}
 	}
@@ -83,9 +84,9 @@
 		display: flex;
 		justify-content: center;
 		gap: 0.3rem;
-		color: $border-input;
+		color: var(--border-input);
 		a {
-			color: $white;
+			color: var(--white);
 		}
 	}
 }

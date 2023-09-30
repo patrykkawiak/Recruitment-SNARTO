@@ -10,6 +10,7 @@ import Navigation from '../../components/layouts/Navigation/Navigation';
 import IntroTasks from '../../components/UI/IntroTasks/IntroTasks';
 import TasksList from '../../components/layouts/Tasks/TasksList';
 
+
 const HomePage = () => {
 	const [loading, setLoading] = useState(true);
 	const [modal, setModal] = useState(false);

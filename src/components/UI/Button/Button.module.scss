@@ -4,32 +4,32 @@
 	padding: 1.2rem 2.4rem;
 	font-size: 1.6rem;
 	border-radius: 4px;
-	color: $white;
+	color: var(--white);
 	transition: background-color 0.3s, color 0.3s;
 	cursor: pointer;
 }
 
 .primary {
-	background-color: $main-color;
+	background-color: var(--main-color);
 	border: 2px solid transparent;
 }
 .primary:disabled {
-	background-color: $darker-main;
-	color: $semi-darker-white;
+	background-color: var(--darker-main);
+	color: var(--semi-darker-white);
 }
 .secondary {
 	background-color: transparent;
-	border: 2px solid $main-color;
+	border: 2px solid var(--main-color);
 }
 
 .primary:hover,
 .primary:active,
 .primary:focus {
-	background-color: $darker-main;
-	color: $semi-darker-white;
+	background-color: var(--darker-main);
+	color: var(--semi-darker-white);
 }
 .secondary:hover,
 .secondary:active,
 .secondary:focus {
-	background-color: $darker-main;
+	background-color: var(--darker-main);
 }

@@ -2,9 +2,9 @@ import Plus from '../../../assets/svg/Plus';
 import { signOut } from 'firebase/auth';
 import style from './Navigation.module.scss';
 import { auth } from '../../../helpers/firebase-config';
+import ThemeSwitch from '../../UI/ThemeSwitch/ThemeSwitch';
 
 const Navigation = ({ openModal }) => {
-    
 	const userSignOut = () => {
 		signOut(auth)
 			.then(() => {})
@@ -19,6 +19,7 @@ const Navigation = ({ openModal }) => {
 			<button className={style['add-btn']} onClick={openModal}>
 				<Plus />
 			</button>
+			<ThemeSwitch />
 		</nav>
 	);
 };
