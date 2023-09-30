@@ -10,21 +10,21 @@ import { auth } from '../../helpers/firebase-config';
 import { useState } from 'react';
 import Google from '../../assets/svg/Google';
 import Apple from '../../assets/svg/Apple';
-import { useUser } from '../../hooks/useUser';
-import { googleConnection } from '../../helpers/google-connection';
-import { appleConnection } from '../../helpers/apple-connection';
+// import { useUser } from '../../hooks/useUser';
+// import { googleConnection } from '../../helpers/google-connection';
+// import { appleConnection } from '../../helpers/apple-connection';
 
 const LoginPage = () => {
-	const user = useUser();
+	// const user = useUser();
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const [error, setError] = useState(false);
 
 	const navigate = useNavigate();
 
-	if (user) {
-		navigate('/');
-	}
+	// if (user) {
+	// 	navigate('/');
+	// }
 
 	const loginHandler = async (e) => {
 		e.preventDefault();
@@ -44,20 +44,20 @@ const LoginPage = () => {
 	};
 
 	const loginByGoogle = async () => {
-		const connection = await googleConnection();
-		if (connection) {
-			setTimeout(() => {
-				navigate('/');
-			}, 500);
-		}
+		// const connection = await googleConnection();
+		// if (connection) {
+		// 	setTimeout(() => {
+		// 		navigate('/');
+		// 	}, 500);
+		// }
 	};
 	const loginByApple = async () => {
-		const connection = await appleConnection();
-		if (connection) {
-			setTimeout(() => {
-				navigate('/');
-			}, 500);
-		}
+		// const connection = await appleConnection();
+		// if (connection) {
+		// 	setTimeout(() => {
+		// 		navigate('/');
+		// 	}, 500);
+		// }
 	};
 
 	return (

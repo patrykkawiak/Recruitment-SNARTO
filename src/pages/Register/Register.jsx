@@ -9,14 +9,14 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../helpers/firebase-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../hooks/useUser';
+// import { useUser } from '../../hooks/useUser';
 import Google from '../../assets/svg/Google';
 import Apple from '../../assets/svg/Apple';
-import { googleConnection } from '../../helpers/google-connection';
-import { appleConnection } from '../../helpers/apple-connection';
+// import { googleConnection } from '../../helpers/google-connection';
+// import { appleConnection } from '../../helpers/apple-connection';
 
 const RegisterPage = () => {
-	const user = useUser();
+	// const user = useUser();
 
 	const [email, setEmail] = useState(null);
 	const [isEmailValid, setisEmailValid] = useState(false);
@@ -30,9 +30,9 @@ const RegisterPage = () => {
 
 	const navigate = useNavigate();
 
-	if (user) {
-		navigate('/');
-	}
+	// if (user) {
+	// 	navigate('/');
+	// }
 
 	const checkIsEmailValid = () => {
 		const emailReg = /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{1,5}$/;
@@ -74,26 +74,26 @@ const RegisterPage = () => {
 		try {
 			await createUserWithEmailAndPassword(auth, email, password);
 			setTimeout(() => {
-				navigate('/');
+				navigate('/login');
 			}, 500);
 		} catch (err) {}
 	};
 
 	const handleRegisterByGoogle = async () => {
-		const connection = await googleConnection();
-		if (connection) {
-			setTimeout(() => {
-				navigate('/');
-			}, 500);
-		}
+		// const connection = await googleConnection();
+		// if (connection) {
+		// 	setTimeout(() => {
+		// 		navigate('/');
+		// 	}, 500);
+		// }
 	};
 	const handleRegisterByApple = async () => {
-		const connection = await appleConnection();
-		if (connection) {
-			setTimeout(() => {
-				navigate('/');
-			}, 500);
-		}
+		// const connection = await appleConnection();
+		// if (connection) {
+		// 	setTimeout(() => {
+		// 		navigate('/');
+		// 	}, 500);
+		// }
 	};
 
 	return (
