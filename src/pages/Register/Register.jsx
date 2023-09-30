@@ -133,7 +133,7 @@ const RegisterPage = () => {
 								<label htmlFor='password'>
 									{!isPasswordValid && isPasswordTouched && (
 										<p style={{ color: 'tomato' }}>
-											Password requires (10 chars, 1 capital letter, 1 number)
+											Password requires (9 chars, 1 capital letter, 1 number)
 										</p>
 									)}
 									{isPasswordTouched && isPasswordValid && 'Password'}

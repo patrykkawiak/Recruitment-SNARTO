@@ -26,14 +26,10 @@
 	.delete {
 		position: absolute;
 		right: 10px;
-		opacity: 0;
+		opacity: 1;
 		padding: 1rem;
 		transition: opacity 0.3s;
 	}
-}
-
-.item:hover .delete {
-	opacity: 1;
 }
 
 .compleated {
