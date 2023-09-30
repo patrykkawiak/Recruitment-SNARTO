@@ -6,13 +6,12 @@ import Heading from '../../components/UI/Heading/Heading';
 import Section from '../../components/UI/Section/Section';
 import SectionBox from '../../components/UI/SectionBox/SectionBox';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { appleProvider, auth, provider } from '../../helpers/firebase-config';
+import { auth } from '../../helpers/firebase-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithPopup } from 'firebase/auth';
+import { useUser } from '../../hooks/useUser';
 import Google from '../../assets/svg/Google';
 import Apple from '../../assets/svg/Apple';
-import { useUser } from '../../hooks/useUser';
 import { googleConnection } from '../../helpers/google-connection';
 import { appleConnection } from '../../helpers/apple-connection';
 
@@ -74,10 +73,10 @@ const RegisterPage = () => {
 
 		try {
 			await createUserWithEmailAndPassword(auth, email, password);
+			setTimeout(() => {
+				navigate('/');
+			}, 500);
 		} catch (err) {}
-		setTimeout(() => {
-			navigate('/login');
-		}, 500);
 	};
 
 	const handleRegisterByGoogle = async () => {
