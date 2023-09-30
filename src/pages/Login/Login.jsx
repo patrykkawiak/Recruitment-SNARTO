@@ -11,12 +11,18 @@ import { useState } from 'react';
 import Notification from '../../components/UI/Notification/Notification';
 import Google from '../../assets/svg/Google';
 import Apple from '../../assets/svg/Apple';
+import { useUser } from '../../hooks/useUser';
 
 const LoginPage = () => {
+	const user = useUser();
 	const [password, setPassword] = useState(null);
 	const [email, setEmail] = useState(null);
 
 	const navigate = useNavigate();
+
+	if (user) {
+		navigate('/');
+	}
 
 	const loginHandler = async (e) => {
 		e.preventDefault();
@@ -101,4 +107,3 @@ const LoginPage = () => {
 };
 export default LoginPage;
 
-const LoginAction = (params) => {};

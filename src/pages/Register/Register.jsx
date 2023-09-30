@@ -12,8 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithPopup } from 'firebase/auth';
 import Google from '../../assets/svg/Google';
 import Apple from '../../assets/svg/Apple';
+import { useUser } from '../../hooks/useUser';
 
 const RegisterPage = () => {
+	const user = useUser();
+
 	const [email, setEmail] = useState(null);
 	const [isEmailValid, setisEmailValid] = useState(false);
 	const [isEmailTouched, setIsEmailTouched] = useState(false);
@@ -25,6 +28,10 @@ const RegisterPage = () => {
 	const [isSecondPasswordValid, setIsSecondPasswordValid] = useState(false);
 
 	const navigate = useNavigate();
+
+	if (user) {
+		navigate('/');
+	}
 
 	const checkIsEmailValid = () => {
 		const emailReg = /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{1,5}$/;
