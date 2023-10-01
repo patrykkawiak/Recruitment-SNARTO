@@ -21,7 +21,7 @@ const RegisterPage = () => {
 	const [email, setEmail] = useState(null);
 	const [isEmailValid, setisEmailValid] = useState(false);
 	const [isEmailTouched, setIsEmailTouched] = useState(false);
-
+	const [error, setError] = useState(false);
 	const [password, setPassword] = useState(null);
 	const [isPasswordValid, setIsPasswordValid] = useState(false);
 	const [isPasswordTouched, setIsPasswordTouched] = useState(false);
@@ -73,9 +73,9 @@ const RegisterPage = () => {
 
 		try {
 			await createUserWithEmailAndPassword(auth, email, password);
-			navigate('/login');
+			navigate('/');
 		} catch (err) {
-			console.log(err);
+			setError(true);
 		}
 	};
 
@@ -102,6 +102,11 @@ const RegisterPage = () => {
 				</div>
 				<div className={style.content}>
 					<Heading>Register</Heading>
+					{error && (
+						<p style={{ color: 'tomato', fontSize: '1.4rem' }}>
+							This user already exist!
+						</p>
+					)}
 					<form className={style.form} onSubmit={handleRegister}>
 						<div className={style.inputs}>
 							<div className={style['input-box']}>
